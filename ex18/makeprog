@@ -1,0 +1,3 @@
+#!/bin/bash
+
+g++ prog.cc impl.cc -o a.prog.out
