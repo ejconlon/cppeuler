@@ -29,9 +29,9 @@ int main(int argc, char* argv[]) {
 		std::cout << "Need limit" << std::endl;;	
 		return -1;
 	}
-	const int limit = atoi(argv[1]);
+	const long limit = atoi(argv[1]);
 
-	const int longestChain = findLongestChain(limit);
-	std::cout << longestChain << std::endl;
+	std::pair<long, long> p = findLongestChain(limit);
+	std::cout << p.first << " => " << p.second << std::endl;
 	return 0;
 }
