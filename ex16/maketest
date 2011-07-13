@@ -1,0 +1,5 @@
+#!/bin/bash
+
+COMMON=../common
+
+g++ -I${COMMON}/include test.cc impl.cc ${COMMON}/lib/libgtest.a -o a.test.out
