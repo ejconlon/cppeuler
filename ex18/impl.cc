@@ -9,7 +9,7 @@ Triangle* parse(std::string s) {
 	Triangle* tri = new Triangle();
 
 	int l = 1;
-	std::vector<int> v;
+	std::vector<long> v;
 	std::stringstream ss(s);
 	std::string p;
 
@@ -35,7 +35,34 @@ Triangle* parse(std::string s) {
 	return tri;
 }
 
-long findLargestSum(Triangle* tri) {
-	return 23;
+long findLargestSum(Triangle* triSrc) {
+	Triangle triSink(*triSrc);
+	zeroOut(&triSink);
+	// triSink is now the same size as triSrc;
+	// fill in bottom with triSrc row and work way up
+	
+	for (int r = triSrc->size()-1, c = 0; c <= r; ++c) {
+		triSink[r][c] = (*triSrc)[r][c];
+	}
+	for (int r = triSrc->size()-2; r >= 0; --r) {
+		for (int c = 0; c <= r; ++c) {
+			long cur = (*triSrc)[r][c];
+			long bottom = triSink[r+1][c];
+			long right = triSink[r+1][c+1];
+			long max = (bottom > right ? bottom : right);
+			triSink[r][c] = cur + max;
+		}
+	}
+
+	return triSink[0][0];
+}
+
+void zeroOut(Triangle* tri) {
+	for (int i = 0; i < tri->size(); i++) {
+		std::vector<long>* r = &(*tri)[i];
+		for (int j = 0; j < r->size(); j++) {
+			(*r)[j] = 0; 
+		}
+	}
 }
 

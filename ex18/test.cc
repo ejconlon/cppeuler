@@ -13,6 +13,24 @@ TEST(TriTest, Parse) {
 	EXPECT_EQ(2, (*t1)[1].size());
 	EXPECT_EQ(3, (*t1)[2].size());
 	EXPECT_EQ(4, (*t1)[3].size());
+
+	EXPECT_EQ(3, (*t1)[0][0]);
+	EXPECT_EQ(8, (*t1)[3][0]);
+	EXPECT_EQ(3, (*t1)[3][3]);
+
+	Triangle t2(*t1);
+	EXPECT_EQ(3, (t2)[0][0]);
+	EXPECT_EQ(8, (t2)[3][0]);
+	EXPECT_EQ(3, (t2)[3][3]);
+	zeroOut(&t2);
+	EXPECT_EQ(0, (t2)[0][0]);
+	EXPECT_EQ(0, (t2)[3][0]);
+	EXPECT_EQ(0, (t2)[3][3]);
+	
+	EXPECT_EQ(3, (*t1)[0][0]);
+	EXPECT_EQ(8, (*t1)[3][0]);
+	EXPECT_EQ(3, (*t1)[3][3]);
+	
 	delete t1;
 }
 
