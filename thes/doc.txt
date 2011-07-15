@@ -1,0 +1,14 @@
+    --- header
+    4 bytes: number of words
+
+    --- index section. The words are listed in alphabetical order, so you can
+    --- look one up using binary search.
+    for each word:
+        4 byte ptr to word record
+
+    --- word section:
+    for each word:
+       null terminated text
+       4 bytes: number of related words
+       for each link,
+           ptr to linked word record
